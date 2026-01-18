@@ -57,15 +57,15 @@
 #### 更多页面展示
 | 博客文章页 | 个人资料页 |
 |:---:|:---:|
-| <img src="./client/docs/images/Pc_blog.png" width="100%" alt="Blog Page"> | <img src="./client/docs/images/Pc_profile.png" width="100%" alt="Profile Page"> |
+| <img src="./docs/images/Pc_blog.png" width="100%" alt="Blog Page"> | <img src="./docs/images/Pc_profile.png" width="100%" alt="Profile Page"> |
 
 | 创作中心 (CMS) | 留言/联系页 |
 |:---:|:---:|
-| <img src="./client/docs/images/Pc_creation.png" width="100%" alt="Creation Center"> | <img src="./client/docs/images/Pc_contact.png" width="100%" alt="Contact Page"> |
+| <img src="./docs/images/Pc_creation.png" width="100%" alt="Creation Center"> | <img src="./docs/images/Pc_contact.png" width="100%" alt="Contact Page"> |
 
 | 后台管理系统 (Admin Dashboard) |
 |:---:|
-| <img src="./client/docs/images/Pc_back.png" width="100%" alt="Admin Dashboard"> |
+| <img src="./docs/images/Pc_back.png" width="100%" alt="Admin Dashboard"> |
 
 ---
 
