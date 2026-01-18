@@ -1,0 +1,577 @@
+/* ==================== 🎨 文艺艺术风格主题系统 v2.1 ==================== */
+
+/* 导入字体 - 添加更具文艺感的字体 */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=Noto+Serif+SC:wght@300;400;600;700&display=swap');
+@import 'animate.css';
+
+/* ==================== 1. 文艺艺术风格 CSS 变量系统 ==================== */
+
+:root {
+  /* --- 🎨 浅色模式 (文艺水彩风格) --- */
+
+  /* 背景层次 (水彩纸质感) */
+  --bg-body: #fcfaf5;
+  /* 暖米白，像水彩纸 */
+  --bg-surface: #f9f6ef;
+  /* 略带纹理的米色 */
+  --bg-elevated: #fffefc;
+  /* 纯白水彩纸 */
+
+  /* 文字层次 (复古印刷色调) */
+  --text-primary: #3c3c3c;
+  /* 深炭灰，像印刷油墨 */
+  --text-secondary: #6e6e6e;
+  /* 暖灰 */
+  --text-tertiary: #9a9a9a;
+  /* 浅灰 */
+
+  /* 艺术品牌色 (水彩颜料色) */
+  --accent-color: #8a9a5b;
+  /* 橄榄绿 - 像水彩颜料 */
+  --accent-hover: #6b7c45;
+  /* 深橄榄绿 */
+  --accent-secondary: #b2967d;
+  /* 陶土色 - 辅助色 */
+  --accent-tertiary: #8b7d7b;
+  /* 灰紫色 - 点缀色 */
+
+  /* 艺术渐变 (水彩晕染效果) */
+  --gradient-primary: linear-gradient(135deg, #a8c9b8 0%, #8ab89f 25%, #b2967d 75%, #d4c4b7 100%);
+  --gradient-secondary: linear-gradient(to right, rgba(138, 154, 91, 0.1), rgba(178, 150, 125, 0.1));
+
+  /* 艺术阴影 (水彩晕开效果) */
+  --shadow-soft: 0 3px 10px rgba(138, 154, 91, 0.08);
+  --shadow-medium: 0 5px 20px rgba(138, 154, 91, 0.12);
+  --shadow-strong: 0 10px 30px rgba(138, 154, 91, 0.16);
+
+  /* 艺术边框 (手绘描边效果) */
+  --border-soft: 1px solid rgba(138, 154, 91, 0.15);
+  --border-medium: 1.5px solid rgba(138, 154, 91, 0.25);
+
+  /* 水彩纸纹理效果 */
+  --texture-overlay: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+
+  /* 半透明艺术玻璃 (水彩湿画效果) */
+  --glass-bg: rgba(255, 254, 252, 0.85);
+  --glass-border: rgba(138, 154, 91, 0.2);
+  --glass-shadow:
+    0 8px 32px rgba(138, 154, 91, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  /* 交互元素 */
+  --input-bg: rgba(255, 254, 252, 0.9);
+  --input-border: rgba(138, 154, 91, 0.3);
+  --hover-bg: rgba(138, 154, 91, 0.08);
+
+  /* 艺术过渡动画 */
+  --theme-transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  --artistic-transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* --- 🌙 深色模式 (午夜画廊风格) --- */
+html.dark {
+  /* 背景层次 (深色画布质感) */
+  --bg-body: #1a1a1a;
+  /* 深灰画布 */
+  --bg-surface: #242424;
+  /* 中性灰 */
+  --bg-elevated: #2e2e2e;
+  /* 浅灰 */
+
+  /* 文字层次 (美术馆标签色调) */
+  --text-primary: #f0f0f0;
+  /* 暖白 */
+  --text-secondary: #cccccc;
+  /* 中灰 */
+  --text-tertiary: #888888;
+  /* 深灰 */
+
+  /* 艺术品牌色 (夜间画廊照明) */
+  --accent-color: #c9a86a;
+  /* 金色 - 像画框 */
+  --accent-hover: #b89446;
+  /* 深金色 */
+  --accent-secondary: #8a9a5b;
+  /* 保留日间绿色 */
+  --accent-tertiary: #a67c52;
+  /* 铜色 */
+
+  /* 艺术渐变 (夜间灯光效果) */
+  --gradient-primary: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 25%, #c9a86a 75%, #2a2a2a 100%);
+  --gradient-secondary: linear-gradient(to right, rgba(201, 168, 106, 0.1), rgba(138, 154, 91, 0.1));
+
+  /* 艺术阴影 (夜间聚光灯效果) */
+  --shadow-soft: 0 3px 15px rgba(201, 168, 106, 0.15);
+  --shadow-medium: 0 5px 25px rgba(201, 168, 106, 0.2);
+  --shadow-strong: 0 10px 35px rgba(201, 168, 106, 0.25);
+
+  /* 艺术边框 (金边描边) */
+  --border-soft: 1px solid rgba(201, 168, 106, 0.3);
+  --border-medium: 1.5px solid rgba(201, 168, 106, 0.4);
+
+  /* 画布纹理效果 */
+  --texture-overlay: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+
+  /* 半透明艺术玻璃 (夜间玻璃效果) */
+  --glass-bg: rgba(36, 36, 36, 0.85);
+  --glass-border: rgba(201, 168, 106, 0.25);
+  --glass-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  /* 交互元素 */
+  --input-bg: rgba(46, 46, 46, 0.9);
+  --input-border: rgba(201, 168, 106, 0.4);
+  --hover-bg: rgba(201, 168, 106, 0.12);
+}
+
+/* ==================== 2. 全局基础样式 (文艺风格) ==================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--bg-body);
+  overflow-x: hidden;
+  transition: var(--theme-transition);
+  /* 添加水彩纸纹理 */
+  background-image: var(--texture-overlay);
+}
+
+body {
+  background-color: transparent !important;
+  color: var(--text-primary);
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  line-height: 1.7;
+  min-height: 100vh;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: var(--theme-transition);
+  letter-spacing: 0.01em;
+}
+
+/* 标题字体使用更文艺的字体 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+/* 艺术引文样式 */
+.art-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.2em;
+  line-height: 1.8;
+  color: var(--accent-secondary);
+  border-left: 3px solid var(--accent-color);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  transition: var(--artistic-transition);
+}
+
+/* ==================== 3. 主题切换波纹动画 (艺术水彩扩散) ==================== */
+
+.theme-ripple {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vw;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+  background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+  mix-blend-mode: overlay;
+  transition:
+    transform 1s cubic-bezier(0.19, 1, 0.22, 1),
+    opacity 1s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.theme-ripple.active {
+  transform: translate(-50%, -50%) scale(3);
+  opacity: 0.4;
+}
+
+/* ==================== 4. 艺术化组件样式 ==================== */
+
+/* 🖼️ 艺术画框卡片 */
+.art-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px) saturate(160%);
+  -webkit-backdrop-filter: blur(15px) saturate(160%);
+  border: var(--border-soft);
+  border-radius: 4px;
+  box-shadow: var(--glass-shadow);
+  color: var(--text-primary);
+  transition: var(--artistic-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.art-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gradient-primary);
+  opacity: 0.5;
+}
+
+.art-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    var(--shadow-strong),
+    0 0 0 1px var(--glass-border);
+}
+
+/* 艺术画框效果 */
+.art-card.frame::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border: 2px solid var(--accent-secondary);
+  border-radius: 8px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.art-card.frame:hover::after {
+  opacity: 0.4;
+}
+
+/* 🎨 艺术笔触按钮 */
+.artistic-btn {
+  background: transparent;
+  border: var(--border-medium);
+  padding: 12px 28px;
+  border-radius: 2px;
+  color: var(--text-primary);
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: var(--artistic-transition);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.05em;
+}
+
+.artistic-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-secondary);
+  transition: left 0.7s ease;
+  z-index: -1;
+}
+
+.artistic-btn:hover::before {
+  left: 0;
+}
+
+.artistic-btn:hover {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+/* 水彩效果按钮 */
+.watercolor-btn {
+  background: var(--glass-bg);
+  border: none;
+  padding: 14px 32px;
+  border-radius: 0;
+  color: var(--text-primary);
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: var(--artistic-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.watercolor-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-primary);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.5s ease;
+}
+
+.watercolor-btn:hover::after {
+  opacity: 0.1;
+}
+
+.watercolor-btn:hover {
+  letter-spacing: 0.1em;
+  padding: 14px 30px;
+}
+
+/* 📝 艺术输入框 (手绘线条效果) */
+.artistic-input {
+  background: transparent;
+  border: none;
+  border-bottom: var(--border-medium);
+  padding: 12px 0;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  transition: var(--artistic-transition);
+  outline: none;
+  width: 100%;
+  border-radius: 0;
+}
+
+.artistic-input:focus {
+  border-bottom-color: var(--accent-color);
+  padding: 12px 0 11px;
+}
+
+.artistic-input::placeholder {
+  color: var(--text-tertiary);
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+/* 🖋️ 艺术下划线链接 */
+.artistic-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  position: relative;
+  transition: var(--artistic-transition);
+  font-weight: 500;
+}
+
+.artistic-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gradient-primary);
+  transition: width 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.artistic-link:hover::after {
+  width: 100%;
+}
+
+.artistic-link:hover {
+  color: var(--accent-secondary);
+}
+
+/* ==================== 5. 艺术装饰元素 ==================== */
+
+/* 手绘分隔线 */
+.art-divider {
+  height: 1px;
+  background: var(--gradient-primary);
+  margin: 2rem 0;
+  position: relative;
+  border: none;
+}
+
+.art-divider::before {
+  content: '❦';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-body);
+  padding: 0 1rem;
+  color: var(--accent-color);
+  font-size: 1.2em;
+}
+
+/* 水彩斑点装饰 */
+.watercolor-blob {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.03;
+  filter: blur(20px);
+  z-index: -1;
+  background: var(--gradient-primary);
+}
+
+/* 艺术标签 */
+.art-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--glass-bg);
+  border: var(--border-soft);
+  border-radius: 1px;
+  font-size: 0.85em;
+  color: var(--accent-secondary);
+  margin: 0 4px 8px 0;
+  transition: var(--artistic-transition);
+}
+
+.art-tag:hover {
+  background: var(--hover-bg);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+/* ==================== 6. 滚动条美化 (艺术风格) ==================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+  border-left: 1px solid var(--border-soft);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-primary);
+  border-radius: 0;
+  border: 1px solid var(--glass-border);
+  transition: var(--artistic-transition);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+/* ==================== 7. 选中文字效果 (水彩效果) ==================== */
+
+::selection {
+  background: rgba(138, 154, 91, 0.3);
+  color: var(--text-primary);
+}
+
+::-moz-selection {
+  background: rgba(138, 154, 91, 0.3);
+  color: var(--text-primary);
+}
+
+/* ==================== 8. 艺术加载动画 ==================== */
+
+@keyframes watercolor-spread {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+}
+
+@keyframes artistic-shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.art-skeleton {
+  background: linear-gradient(90deg,
+      var(--bg-surface) 0%,
+      var(--bg-elevated) 50%,
+      var(--bg-surface) 100%);
+  background-size: 1000px 100%;
+  animation: artistic-shimmer 3s infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.art-skeleton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-secondary);
+  opacity: 0.3;
+  animation: watercolor-spread 2s infinite alternate;
+}
+
+/* ==================== 9. 响应式艺术调整 ==================== */
+
+@media (max-width: 768px) {
+  body {
+    font-size: 0.95em;
+    line-height: 1.6;
+  }
+
+  .art-card {
+    border-radius: 2px;
+  }
+
+  .artistic-btn,
+  .watercolor-btn {
+    padding: 10px 20px;
+  }
+}
+
+/* 打印样式 - 艺术印刷效果 */
+@media print {
+  body {
+    color: #000;
+    background: #fff;
+    font-family: 'Georgia', serif;
+  }
+
+  .art-card {
+    border: 1px solid #ddd;
+    box-shadow: none;
+    background: #fff;
+  }
+}
+
+/* 全局隱藏導航和頁腳，確保純淨體驗 */
+body.cinema-mode-active {
+    overflow: hidden !important;
+}
+body.cinema-mode-active header,
+body.cinema-mode-active footer,
+body.cinema-mode-active nav,
+body.cinema-mode-active .header,
+body.cinema-mode-active .navbar,
+body.cinema-mode-active .footer,
+body.cinema-mode-active .side-toolbar-wrapper {
+    display: none !important;
+}
