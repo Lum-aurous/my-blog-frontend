@@ -1,3 +1,4 @@
+# ================= 必须忽略的垃圾文件 =================
 # 日志
 logs
 *.log
@@ -7,14 +8,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# 环境变量文件
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# 依赖项目
+# 依赖包
 node_modules
 
 # 构建输出
@@ -22,15 +16,27 @@ dist
 dist-ssr
 *.local
 
-
-# 编译文件
-.vscode/*
-!.vscode/extensions.json
-.idea
+# 系统文件
 .DS_Store
+.idea
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 
+# ================= 🚫 安全与隐私 (关键部分) =================
+# 🔥 必须忽略！因为是公开仓库，绝对不能上传任何环境变量文件
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*
+
+# 🔥 忽略编辑器配置 (保持公开仓库的纯净，不要上传个人的 IDE 设置)
+.vscode/
+.idea/
+
+# 忽略截图文件夹中的源文件（如果你只想上传 docs 里的图，不想上传 PSD 等源文件）
+# *.psd
