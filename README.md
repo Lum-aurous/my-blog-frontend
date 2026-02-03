@@ -1,7 +1,7 @@
 <div align="center">
   <img src="./public/logo.jpg" alt="Logo" width="100">
   
-  <h1 align="center">Veritas Blog Frontend</h1>
+  <h1 align="center">Veritas Blog</h1>
   
   <p align="center">
     <strong>探索真理，追寻自由 | Record Life, Discover Beauty</strong>
