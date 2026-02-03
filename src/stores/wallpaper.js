@@ -9,11 +9,22 @@ export const useWallpaperStore = defineStore("wallpaper", () => {
   const currentWallpaper = ref("");
   const wallpaperMode = ref("website");
   const wallpaperBlur = ref(0);
-  const wallpaperMask = ref(true);
+  const wallpaperMask = ref(false);
   const isLoading = ref(false);
   const userHasCustom = ref(false);
   const isInitialized = ref(false);
   let isFetchingUserWallpaper = false;
+
+  // 从 localStorage 读取保存的设置
+  const savedWallpaperMask = localStorage.getItem("wallpaperMask");
+  if (savedWallpaperMask !== null) {
+    wallpaperMask.value = JSON.parse(savedWallpaperMask);
+  }
+
+  // 监听 wallpaperMask 变化并保存
+  watch(wallpaperMask, (newValue) => {
+    localStorage.setItem("wallpaperMask", JSON.stringify(newValue));
+  });
 
   // 缓存配置
   const wallpaperCache = ref({
@@ -182,7 +193,7 @@ export const useWallpaperStore = defineStore("wallpaper", () => {
         JSON.stringify({
           data,
           timestamp: Date.now(),
-        })
+        }),
       );
 
       return data;
@@ -231,7 +242,7 @@ export const useWallpaperStore = defineStore("wallpaper", () => {
       }
 
       const res = await fetch(
-        `/api/wallpaper/user?userId=${userStore.user.id}`
+        `/api/wallpaper/user?userId=${userStore.user.id}`,
       );
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
@@ -246,7 +257,7 @@ export const useWallpaperStore = defineStore("wallpaper", () => {
           JSON.stringify({
             url: cleanUrl,
             timestamp: Date.now(),
-          })
+          }),
         );
 
         userHasCustom.value = true;
@@ -329,7 +340,7 @@ export const useWallpaperStore = defineStore("wallpaper", () => {
         JSON.stringify({
           data,
           timestamp: Date.now(),
-        })
+        }),
       );
 
       wallpaperCache.value.website = data.websiteUrl || "";
@@ -468,7 +479,7 @@ export const useWallpaperStore = defineStore("wallpaper", () => {
           JSON.stringify({
             url: newUrl,
             timestamp: Date.now(),
-          })
+          }),
         );
 
         wallpaperCache.value.userCustom = newUrl;
@@ -538,7 +549,7 @@ export const useWallpaperStore = defineStore("wallpaper", () => {
         }
       }
     },
-    { immediate: false }
+    { immediate: false },
   );
 
   /**

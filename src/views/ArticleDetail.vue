@@ -1747,7 +1747,7 @@ onUnmounted(() => {
                                     <div class="postmark-circle">
                                         <span>{{ new Date().getDate() }}</span>
                                         <small>{{ new Date().toLocaleString('en', { month: 'short' }).toUpperCase()
-                                            }}</small>
+                                        }}</small>
                                     </div>
                                     <div class="postcard-wax-seal"><span class="seal-v">V</span></div>
                                 </div>
@@ -3173,22 +3173,24 @@ onUnmounted(() => {
 /* 🔥 修复 REC 图标：无背景、纯净悬浮模式 */
 .cinema-mode-active .theater-rec-status {
     position: absolute !important;
-    top: 25px !important;  /* 稍微调整位置，更自然 */
+    top: 25px !important;
+    /* 稍微调整位置，更自然 */
     left: 25px !important;
     z-index: 2147483648 !important;
-    
+
     display: flex !important;
     align-items: center;
     gap: 8px;
-    
+
     /* 🔥 关键修改：背景设为透明，去掉内边距 */
-    background: transparent !important; 
-    padding: 0 !important; 
-    
+    background: transparent !important;
+    padding: 0 !important;
+
     /* 加上文字阴影，防止视频背景太白看不清字 */
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-    
-    font-family: 'Courier New', monospace; /* 保持复古字体 */
+
+    font-family: 'Courier New', monospace;
+    /* 保持复古字体 */
     font-weight: bold;
     color: #fff;
     pointer-events: none;
@@ -3202,13 +3204,20 @@ onUnmounted(() => {
     background-color: #ff3b30;
     border-radius: 50%;
     /* 红点也加一点阴影，更立体 */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     animation: rec-pulse 1s infinite alternate;
 }
 
 @keyframes rec-pulse {
-    from { opacity: 1; transform: scale(1); }
-    to { opacity: 0.3; transform: scale(0.8); }
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
 }
 
 /* 14. 隐藏其他页面元素 */
@@ -5560,14 +5569,16 @@ textarea:disabled {
     left: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
-    background-color: rgba(0, 0, 0, 0.95) !important; /* 95% 黑色背景 */
-    z-index: 2147483647 !important; /* 宇宙最高层级 */
-    
+    background-color: rgba(0, 0, 0, 0.95) !important;
+    /* 95% 黑色背景 */
+    z-index: 2147483647 !important;
+    /* 宇宙最高层级 */
+
     /* Flex 布局保证视频永远居中 */
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    
+
     /* 清除任何边距 */
     margin: 0 !important;
     padding: 0 !important;
@@ -5576,16 +5587,19 @@ textarea:disabled {
 
 /* 2. 视频外框 */
 .cinema-mode-active .theater-frame {
-    width: 100% !important; /* 手机端宽度撑满 */
-    max-width: 100vw !important; /* 防止溢出 */
+    width: 100% !important;
+    /* 手机端宽度撑满 */
+    max-width: 100vw !important;
+    /* 防止溢出 */
     height: auto !important;
-    max-height: 80vh !important; /* 上下留点空隙，不要顶满 */
-    
+    max-height: 80vh !important;
+    /* 上下留点空隙，不要顶满 */
+
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     border-radius: 0 !important;
-    
+
     /* 确保 Flex 生效 */
     display: flex !important;
     justify-content: center !important;
@@ -5597,7 +5611,345 @@ textarea:disabled {
     width: 100% !important;
     height: auto !important;
     max-height: 80vh !important;
-    object-fit: contain !important; /* 保持比例 */
+    object-fit: contain !important;
+    /* 保持比例 */
     background: #000 !important;
+}
+
+/* ==================== 🏛️ 专栏弹窗样式 (与个人中心保持一致) ==================== */
+
+/* 1. 遮罩层：深色毛玻璃，聚焦视线 */
+.column-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(44, 30, 20, 0.6);
+    /* 深棕色半透明 */
+    backdrop-filter: blur(6px);
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* 2. 弹窗主体：羊皮纸质感 */
+.art-modal {
+    width: 100%;
+    max-width: 400px;
+    /* 稍微宽一点 */
+    background-color: #fdfbf7;
+    /* 暖白色/羊皮纸色 */
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(139, 90, 43, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    /* 增加噪点纹理 */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* 3. 头部设计 */
+.art-modal-header {
+    padding: 25px 20px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.art-modal-header h3 {
+    margin: 0 15px;
+    font-family: "Georgia", "Songti SC", serif;
+    font-size: 1.2rem;
+    color: #5c4033;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.decoration-line {
+    height: 1px;
+    width: 30px;
+    background: linear-gradient(90deg, transparent, #d4c5b0, transparent);
+}
+
+.art-close-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #bca38a;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.art-close-btn:hover {
+    color: #8b5a2b;
+}
+
+.art-modal-body {
+    padding: 10px 30px 35px;
+    /* 底部留白稍微多一点 */
+}
+
+/* 4. 输入框组：Material 风格动态下划线 */
+.input-group {
+    position: relative;
+    margin-bottom: 30px;
+    /* 间距拉大一点 */
+    padding-top: 10px;
+}
+
+.art-input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 8px 0;
+    font-size: 1rem;
+    color: #2c1e0f;
+    font-family: inherit;
+    outline: none;
+    border-bottom: 1px solid #d4c5b0;
+    transition: border-color 0.3s;
+}
+
+.art-input.textarea {
+    resize: none;
+    line-height: 1.6;
+}
+
+/* 浮动 Label 效果 */
+.input-group label {
+    position: absolute;
+    top: 18px;
+    left: 0;
+    color: #999;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+/* 输入框获得焦点或有内容时，Label 上浮 */
+.art-input:focus~label,
+.art-input:not(:placeholder-shown)~label {
+    top: -5px;
+    font-size: 0.75rem;
+    color: #8b5a2b;
+}
+
+/* 底部线条动画 */
+.input-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #8b5a2b;
+    transition: width 0.3s ease;
+}
+
+.art-input:focus~.input-underline {
+    width: 100%;
+}
+
+/* 5. 表单按钮 */
+.art-form-ops {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.art-btn-text {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.art-btn-text:hover {
+    color: #555;
+}
+
+.art-btn-primary {
+    background: #2c1e0f;
+    /* 深咖啡色 */
+    color: #f7f1e3;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-family: serif;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(44, 30, 20, 0.2);
+}
+
+.art-btn-primary:hover {
+    background: #4a3b2a;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(44, 30, 20, 0.3);
+}
+
+.art-btn-primary:disabled {
+    background: #a59e94;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* 6. 专栏列表样式 */
+.art-column-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.art-scroll-area {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.art-list-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+    margin-bottom: 8px;
+}
+
+.art-list-item:hover {
+    background: #f7f3ec;
+    border-color: #e8ddcc;
+    transform: translateX(4px);
+}
+
+.folder-symbol {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #d4c5b0, #b8a387);
+    border-radius: 6px;
+    margin-right: 15px;
+    position: relative;
+}
+
+.folder-symbol::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    width: 20px;
+    height: 5px;
+    background: #d4c5b0;
+    border-radius: 2px 2px 0 0;
+}
+
+.item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-name {
+    font-weight: 600;
+    color: #2c1e0f;
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.item-count {
+    font-size: 0.8rem;
+    color: #8b7d6b;
+}
+
+.select-arrow {
+    color: #8b5a2b;
+    font-size: 1.2rem;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.art-list-item:hover .select-arrow {
+    opacity: 1;
+}
+
+/* 7. 空状态 */
+.art-empty-state {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.empty-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    opacity: 0.3;
+}
+
+.art-empty-state p {
+    color: #8b7d6b;
+    margin-bottom: 20px;
+}
+
+.art-btn-primary.small {
+    padding: 8px 20px;
+    font-size: 0.85rem;
+}
+
+/* 8. 底部新建按钮 */
+.art-footer-action {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e8ddcc;
+}
+
+.art-create-trigger {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px dashed #d4c5b0;
+    border-radius: 8px;
+    color: #8b7d6b;
+    cursor: pointer;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.art-create-trigger:hover {
+    background: #f7f3ec;
+    border-color: #8b7d6b;
+    color: #5c4033;
+}
+
+.plus {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* 动画过渡 */
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+    transition: all 0.3s ease;
+}
+
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+    opacity: 0;
+    transform: translateY(10px);
 }
 </style>
